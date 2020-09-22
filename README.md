@@ -1,4 +1,4 @@
-##Doccano output file parser for spaCy NLP.
+#Doccano output file parser for spaCy NLP.
 
 Hello everyone! I developed a parser that can parse Doccano output file format to spaCy format for NLP. 
 
