@@ -4,7 +4,7 @@ import logging
 import findLabels
 logging.basicConfig(level=logging.INFO, filename='logs/parserLog.txt')
 
-viqLabels = []
+labels = []
 path = easygui.fileopenbox()
 
 
@@ -14,7 +14,7 @@ def parseDoccanoToSpacy():
         fopen = open(path, 'rt')
         lines = fopen.readlines()
         data = []
-        viqLabels = findLabels.getLabels(path)
+        labels = findLabels.getLabels(path)
 
         for line in lines:
             line = json.loads(line)
@@ -24,13 +24,13 @@ def parseDoccanoToSpacy():
             else:
                 line['entities'] = []
 
-            viq_entities = []
+            entities = []
 
             for e in line['entities']:
-                if e[2] in viqLabels:
-                    viq_entities.append(
+                if e[2] in labels:
+                    entities.append(
                         {"start": e[0], "end": e[1], "label": e[2]})
-                    line['entities'] = viq_entities
+                    line['entities'] = entities
 
             entJson = {"entities": []}
             if (len(line["text"]) > 5):
@@ -50,4 +50,4 @@ def parseDoccanoToSpacy():
 
 
 def getLabels():
-    return viqLabels
+    return labels
